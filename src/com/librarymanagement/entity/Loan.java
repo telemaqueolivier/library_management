@@ -5,11 +5,13 @@ import java.sql.Date;
 public class Loan {
 	private int id;
 	private int memberId;
+	private int bookId;
 	private Date returnDate;
 
-	public Loan(int id, int memberId, Date returnDate){
+	public Loan(int id, int memberId, int bookId, Date returnDate){
 		this.id = id;
 		this.memberId = memberId;
+		this.bookId = bookId;
 		this.returnDate = returnDate;
 	}
 	
@@ -19,6 +21,9 @@ public class Loan {
 	
 	public int memberId(){
 		return memberId;
+	}
+	public int bookId(){
+		return bookId;
 	}
 	public Date returnDate(){
 		return returnDate;
