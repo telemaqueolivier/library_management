@@ -18,7 +18,7 @@ public class LoanService {
 	
 	public boolean loanBook(Member member, Book book, Date returnDate){
 		boolean ret = false;
-		ArrayList<Loan> loans = loanDao.getAllLoansByMemberId(member.id());
+		ArrayList<Loan> loans = loanDao.findAllLoansByMemberId(member.id());
 
 		if(loans.size() < 3){
 			if (book.availableCopyNum() > 0){
@@ -32,4 +32,15 @@ public class LoanService {
 		return ret;
 	}
 
+	public boolean restituteBook(Member member, Book book, Date returnDate){
+		boolean ret = false;
+		
+		if(bookDao.updateAvailableCopyNum(book.id(), book.availableCopyNum() + 1)){
+			if(loanDao.deleteLoan(new Loan(0, member.id(), book.id(), returnDate))){
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
 }

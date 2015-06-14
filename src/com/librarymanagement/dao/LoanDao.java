@@ -10,5 +10,6 @@ public abstract class LoanDao extends Dao<Loan> {
 	public LoanDao(Connection connection, String tableName) {
 		super(connection, tableName);
 	}
-	public abstract ArrayList<Loan> getAllLoansByMemberId(int memberId);
+	public abstract ArrayList<Loan> findAllLoansByMemberId(int memberId);
+	public abstract boolean deleteLoan(Loan loan);
 }

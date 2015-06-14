@@ -22,15 +22,12 @@ public class LoanDaoImpl extends LoanDao {
 	public boolean create(Loan entity) {
 		boolean ret;
 		try {
-			this.connection
-					.prepareStatement(
-							"INSERT INTO Loan (member_id, book_id, return_date) VALUES ('"
-									+ String.valueOf(entity.memberId())
-									+ "','"
-									+ String.valueOf(entity.bookId())
-									+ "','"
-									+ entity.returnDate().toString()
-									+ "')").executeUpdate();
+			this.connection.prepareStatement(
+					"INSERT INTO Loan (member_id, book_id, return_date) VALUES ('"
+							+ String.valueOf(entity.memberId()) + "','"
+							+ String.valueOf(entity.bookId()) + "','"
+							+ entity.returnDate().toString() + "')")
+					.executeUpdate();
 			ret = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -38,14 +35,14 @@ public class LoanDaoImpl extends LoanDao {
 		}
 		return ret;
 	}
-	
+
 	@Override
 	public boolean update(Loan entity) {
 		return false;
 	}
 
 	@Override
-	public ArrayList<Loan> getAllLoansByMemberId(int memberId){
+	public ArrayList<Loan> findAllLoansByMemberId(int memberId) {
 		ArrayList<Loan> loansList = null;
 
 		try {
@@ -54,13 +51,31 @@ public class LoanDaoImpl extends LoanDao {
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY).executeQuery();
 			loansList = new ArrayList<Loan>();
-			while(result.next()){
-				Loan loan = new Loan(result.getInt("id"), memberId, result.getInt("book_id"), result.getDate("return_date"));
+			while (result.next()) {
+				Loan loan = new Loan(result.getInt("id"), memberId,
+						result.getInt("book_id"), result.getDate("return_date"));
 				loansList.add(loan);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return loansList;
+	}
+	
+	@Override
+	public boolean deleteLoan(Loan loan) {
+		boolean ret;
+		try {
+			this.connection.prepareStatement(
+					"DELETE FROM Loan WHERE member_id='" + loan.memberId()
+							+ "' AND book_id='" + loan.bookId()
+							+ "' AND return_date='" + loan.returnDate() + "'")
+					.executeUpdate();
+			ret = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			ret = false;
+		}
+		return ret;
 	}
 }

@@ -33,6 +33,8 @@ public class ApplicationLibraryManagement {
 		
 		LoanService loanService = new LoanService();
 		loanService.loanBook(member, book, new Date(2015, 7, 5));
+		
+		loanService.restituteBook(member, book, new Date(2015, 7, 5));
 		//		ret = bookDao.create(book);
 //		System.out.println(ret);
 
