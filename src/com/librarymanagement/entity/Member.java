@@ -7,12 +7,13 @@ public class Member {
 	private String postalAddress = "";
 	private String email = "";
 	private String job = "";
-	
-	public Member(){
-		
+
+	public Member() {
+
 	}
-	
-	public Member(int id, String firstName, String lastName, String postalAddress, String email, String job){
+
+	public Member(int id, String firstName, String lastName,
+			String postalAddress, String email, String job) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -20,34 +21,54 @@ public class Member {
 		this.email = email;
 		this.job = job;
 	}
-	public int id(){
+
+	public int id() {
 		return id;
 	}
-	public String FirstName(){
+
+	public String firstName() {
 		return firstName;
 	}
-	
-	public String LastName(){
+
+	public String lastName() {
 		return lastName;
 	}
-	
-	public String PostalAddress(){
+
+	public String postalAddress() {
 		return postalAddress;
 	}
-	public String Email(){
+
+	public String email() {
 		return email;
 	}
-	
-	public String Job(){
+
+	public String job() {
 		return job;
 	}
-	
-	public void display(){
+
+	public void display() {
 		System.out.println(id);
 		System.out.println(firstName);
 		System.out.println(lastName);
 		System.out.println(postalAddress);
 		System.out.println(email);
 		System.out.println(job);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		Member other = (Member) obj;
+		if (id != other.id)
+			return false;
+		
+		System.out.println("equal");
+		return true;
 	}
 }

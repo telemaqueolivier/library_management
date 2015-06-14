@@ -1,11 +1,13 @@
 package com.librarymanagement.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.librarymanagement.entity.Loan;
+import com.librarymanagement.entity.Member;
 
 public class LoanDaoImpl extends LoanDao {
 
@@ -61,7 +63,7 @@ public class LoanDaoImpl extends LoanDao {
 		}
 		return loansList;
 	}
-	
+
 	@Override
 	public boolean deleteLoan(Loan loan) {
 		boolean ret;
@@ -77,5 +79,29 @@ public class LoanDaoImpl extends LoanDao {
 			ret = false;
 		}
 		return ret;
+	}
+
+	@Override
+	public ArrayList<Loan> findAllLoansByReturnDateLowerThanCurrentTime() {
+		ArrayList<Loan> loans = null;
+		Date date = new Date(System.currentTimeMillis());
+
+		try {
+			ResultSet result = this.connection.prepareStatement(
+					"SELECT * FROM Loan WHERE return_date < '"
+							+ date.toString() + "'",
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY).executeQuery();
+			loans = new ArrayList<Loan>();
+			while (result.next()) {
+				Loan loan = new Loan(result.getInt("id"),
+						result.getInt("member_id"), result.getInt("book_id"),
+						result.getDate("return_date"));
+				loans.add(loan);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return loans;
 	}
 }

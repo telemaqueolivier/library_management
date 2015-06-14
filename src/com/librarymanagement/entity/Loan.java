@@ -28,4 +28,11 @@ public class Loan {
 	public Date returnDate(){
 		return returnDate;
 	}
+	
+	public void display(){
+		System.out.println(id);
+		System.out.println(memberId);
+		System.out.println(bookId);
+		System.out.println(returnDate);
+	}
 }
