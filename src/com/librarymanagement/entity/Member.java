@@ -20,7 +20,9 @@ public class Member {
 		this.email = email;
 		this.job = job;
 	}
-	
+	public int id(){
+		return id;
+	}
 	public String FirstName(){
 		return firstName;
 	}

@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import com.librarymanagement.entity.Member;
 
 public class MemberDao extends Dao<Member> {
-
 	public MemberDao(Connection connection) {
-		super(connection);
+		super(connection, "Member");
 	}
 
 	@Override
@@ -62,25 +61,4 @@ public class MemberDao extends Dao<Member> {
 	public boolean update(Member entity) {
 		return false;
 	}
-
-	@Override
-	public boolean delete(Member entity) {
-		// TODO Auto-generated method stub
-		boolean ret;
-		try {
-			this.connection.prepareStatement(
-					"DELETE FROM Member WHERE first_name='"
-							+ entity.FirstName() + "' AND last_name='"
-							+ entity.LastName() + "' AND postal_address='"
-							+ entity.PostalAddress() + "' AND mail_address='"
-							+ entity.Email() + "' AND job='" + entity.Job()
-							+ "'").executeUpdate();
-			ret = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			ret = false;
-		}
-		return ret;
-	}
-
 }
