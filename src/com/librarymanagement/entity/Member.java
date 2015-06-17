@@ -47,12 +47,18 @@ public class Member {
 	}
 
 	public void display() {
-		System.out.println(id);
-		System.out.println(firstName);
-		System.out.println(lastName);
-		System.out.println(postalAddress);
-		System.out.println(email);
-		System.out.println(job);
+		System.out.format("%-15s", "first name");
+		System.out.format("%-15s", "last name");
+		System.out.format("%-30s", "postal address");
+		System.out.format("%-30s", "email");
+		System.out.format("%-15s", "job");
+		System.out.println();
+		System.out.format("%-15s", firstName);
+		System.out.format("%-15s", lastName);
+		System.out.format("%-30s", postalAddress);
+		System.out.format("%-30s", email);
+		System.out.format("%-15s", job);
+		System.out.println();
 	}
 
 	@Override

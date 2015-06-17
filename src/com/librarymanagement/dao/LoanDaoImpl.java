@@ -93,6 +93,7 @@ public class LoanDaoImpl extends LoanDao {
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY).executeQuery();
 			loans = new ArrayList<Loan>();
+			
 			while (result.next()) {
 				Loan loan = new Loan(result.getInt("id"),
 						result.getInt("member_id"), result.getInt("book_id"),
