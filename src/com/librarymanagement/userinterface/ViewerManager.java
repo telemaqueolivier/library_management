@@ -3,7 +3,7 @@ package com.librarymanagement.userinterface;
 import java.util.Scanner;
 
 public class ViewerManager extends Viewer {
-	private Viewer viewers[] = {new ServiceViewer()};
+	private Viewer viewers[] = { new ServiceViewer(), new LibrarianViewer() };
 
 	private void displayFunctionalities() {
 		// TODO Auto-generated method stub

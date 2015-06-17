@@ -16,17 +16,17 @@ public class ServiceViewer extends Viewer {
 		System.out.println("2. quit");
 	}
 
-	private void displayAllMembersSortedByName(){
+	private void displayAllMembersSortedByName() {
 		ArrayList<Member> members = memberService.getAllMembersSortedByName();
-		
+
 		System.out.format("%-15s", "first name");
 		System.out.format("%-15s", "last name");
 		System.out.format("%-40s", "postal address");
 		System.out.format("%-30s", "email");
 		System.out.format("%-15s", "job");
 		System.out.println();
-		
-		for(Member m : members){
+
+		for (Member m : members) {
 			System.out.format("%-15s", m.firstName());
 			System.out.format("%-15s", m.lastName());
 			System.out.format("%-40s", m.postalAddress());
@@ -35,10 +35,9 @@ public class ServiceViewer extends Viewer {
 			System.out.println();
 		}
 	}
-	
+
 	@Override
 	protected void interact() {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		int choice;
 
@@ -51,17 +50,17 @@ public class ServiceViewer extends Viewer {
 
 			switch (choice) {
 			case 0:
-				
+
 				break;
-				
+
 			case 1:
 				displayAllMembersSortedByName();
 				break;
-			
+
 			default:
 				break;
 			}
-			
+
 		} while (choice != 2);
 	}
 }
